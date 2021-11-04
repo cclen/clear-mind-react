@@ -2,35 +2,7 @@ const sliderContainer = document.getElementById("slider-container");
 const sliderKnob = document.getElementById("slider-knob");
 const labelsList = document.getElementById("labels-list");
 let isDown = false;
-let containerHeight = sliderContainer.style.height;
-
-const grabKnob = function(event) {
-    isDown = true;
-    offset = sliderKnob.offsetTop - event.clientY;
-}
-
-const releaseKnob = function() {
-    isDown = false;
-}
-
-const moveKnob = function(event) {
-    event.preventDefault();
-    let knobOffset;
-    console.log("height: ", containerHeight);
-
-    if (isDown) {
-        knobOffset = (event.clientY + offset);
-        
-        if (knobOffset < -43) {
-            sliderKnob.style.top = "-43px";
-        } else if ((containerHeight === "300px" && knobOffset > 239) || (containerHeight === "400px" && knobOffset > 339) || (containerHeight === "500px" && knobOffset > 439))
-            {
-            sliderKnob.style.top = "calc(100% - 60px);";
-        } else {
-            sliderKnob.style.top  =  knobOffset + 'px';
-        } 
-    }
-}
+let containerHeight;
 
 function writeSliderRange(arr) {
     //pass range array stored in a variable as an argument
@@ -59,10 +31,6 @@ const setDefaultPositon = function(pos) {
 }
 
 const applySliderConfigs = function (color, size, range, defaultPosition) {
-    // initialize local variables
-    let containerHeight;
-    
-
     // set Slider Button background color
     sliderKnob.style.backgroundColor = color;
     
@@ -102,6 +70,37 @@ applySliderConfigs("aqua", "large", rangeArray2, "min");
 // applySliderConfigs("lime", "small", rangeArray2, "middle");
 // applySliderConfigs("lime", "medium", rangeArray2, "middle");
 // applySliderConfigs("lime", "large", rangeArray2, "middle");
+
+const grabKnob = function(event) {
+    isDown = true;
+    offset = sliderKnob.offsetTop - event.clientY;
+}
+
+const releaseKnob = function() {
+    isDown = false;
+}
+
+const moveKnob = function(event) {
+    event.preventDefault();
+    let knobOffset;
+    
+
+    if (isDown) {
+        knobOffset = (event.clientY + offset);
+        
+        if (knobOffset < -43) {
+            sliderKnob.style.top = "-43px";
+        } else if (
+            (containerHeight === "300px" && knobOffset > 239) || 
+            (containerHeight === "400px" && knobOffset > 339) || 
+            (containerHeight === "500px" && knobOffset > 439)) {
+           
+            sliderKnob.style.top = "calc(100% - 60px)";
+        } else {
+            sliderKnob.style.top  =  knobOffset + 'px';
+        } 
+    }
+}
 
 
 sliderKnob.addEventListener("mousedown", grabKnob);
