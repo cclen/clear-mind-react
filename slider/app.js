@@ -31,7 +31,7 @@ const setDefaultPositon = function(pos) {
 }
 
 const applySliderConfigs = function (color, size, range, defaultPosition) {
-    // set Slider Button background color
+    // set Slider Knob background color
     sliderKnob.style.backgroundColor = color;
     
     // set the Slider size by updating container height
@@ -84,7 +84,6 @@ const moveKnob = function(event) {
     event.preventDefault();
     let knobOffset;
     
-
     if (isDown) {
         knobOffset = (event.clientY + offset);
         
@@ -105,6 +104,5 @@ const moveKnob = function(event) {
 
 sliderKnob.addEventListener("mousedown", grabKnob);
 sliderKnob.addEventListener("mouseup", releaseKnob);
-sliderKnob.addEventListener("mouseleave", releaseKnob);
-sliderKnob.addEventListener("mousemove", moveKnob);
+document.addEventListener("mousemove", moveKnob);
 
