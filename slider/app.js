@@ -3,11 +3,14 @@ const sliderKnob = document.getElementById("slider-knob");
 const labelsList = document.getElementById("labels-list");
 let isDown = false;
 let containerHeight;
+let knobColor;
+let sliderSize;
 
 function writeSliderRange(arr) {
-    //pass range array stored in a variable as an argument
-    //loop through range array - create a div for each value of the array - append those divs to the DOM inside the parent element of labels (labelsList)
-    // since the will receive an array in increasing order, we need to loop throught he array backwards to append the numbers in decreasing order to the track (highest number on top)
+    // Pass range array stored in a variable as an argument.
+    // Loop through range array - create a div for each value of the array - append those divs to the DOM inside the parent element of labels (labelsList).
+    // Since the will receive an array in increasing order, we need to loop throught he array backwards to append the numbers in decreasing order to the track (highest number on top).
+
     let newLabel;
     for(let i = arr.length-1; i >= 0; i--) {
         newLabel = document.createElement("li");
@@ -17,6 +20,7 @@ function writeSliderRange(arr) {
 }
 
 const setDefaultPositon = function(pos) {
+    // Set default position of Slider Knob (max, middle, min)
     let topPosition;
     if (pos === "max") {
         topPosition = "-43px";
@@ -27,14 +31,15 @@ const setDefaultPositon = function(pos) {
     }
 
     sliderKnob.style.top = topPosition;
-
 }
 
-const applySliderConfigs = function (color, size, range, defaultPosition) {
-    // set Slider Knob background color
+const setKnobColor = function(color) {
+    // Set Slider Knob background color
     sliderKnob.style.backgroundColor = color;
-    
-    // set the Slider size by updating container height
+}
+
+const setSliderSize = function(size) {
+    // Set the Slider size by updating container height
     if (size === "medium") {
         containerHeight = "400px";
     } else if (size === "small") {
@@ -43,18 +48,22 @@ const applySliderConfigs = function (color, size, range, defaultPosition) {
         containerHeight = "500px";
     }
     sliderContainer.style.height = containerHeight;
+}
 
-    // Set the Range of the Slider
+const applySliderConfigs = function (color, size, range, defaultPosition) {
+    setKnobColor(color);
+    setSliderSize(size);
     writeSliderRange(range);
-
-    //set default position of Slider Knob (max, middle, min)
     setDefaultPositon(defaultPosition);
 }
 
 const rangeArray1 = [0, 20, 40, 60, 80, 100];
 const rangeArray2 = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
 
-applySliderConfigs("aqua", "medium", rangeArray2, "middle");
+applySliderConfigs("", "", rangeArray2, "middle");
+
+
+// Knob Movements
 
 const grabKnob = function(event) {
     isDown = true;
@@ -84,6 +93,46 @@ const moveKnob = function(event) {
             sliderKnob.style.top  =  knobOffset + 'px';
         } 
     }
+}
+
+
+// CONFIG PANEL
+
+
+
+const getColorValue = function() {
+    const colors = document.getElementsByName('color');
+      
+    for(i = 0; i < colors.length; i++) {
+        if(colors[i].checked)
+        knobColor = colors[i].value;
+    }
+}
+
+const getSizeValue = function() {
+    const sizes = document.getElementsByName('size');
+      
+    for(i = 0; i < sizes.length; i++) {
+        if(sizes[i].checked)
+        sliderSize = sizes[i].value;
+    }
+}
+
+const getDefaultPositionValue = function() {
+    const positions = document.getElementsByName('position');
+      
+    for(i = 0; i < positions.length; i++) {
+        if(positions[i].checked)
+        knobPosition = positions[i].value;
+    }
+}
+
+const applyUserConfig = function() {
+    getColorValue();
+    getSizeValue();
+    getDefaultPositionValue();
+    
+    applySliderConfigs(knobColor, sliderSize, [], knobPosition);
 }
 
 sliderKnob.addEventListener("mousedown", grabKnob);
