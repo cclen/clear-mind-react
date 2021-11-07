@@ -6,6 +6,7 @@ let containerHeight;
 let knobColor;
 let sliderSize;
 let knobPosition;
+let sliderRange = [];
 
 function writeSliderRange(arr) {
     // Pass range array stored in a variable as an argument.
@@ -126,15 +127,49 @@ const getDefaultPositionValue = function() {
     }
 }
 
+const generateRange = function (firstNum, lastNum) {
+    firstNum = parseInt(firstNum);
+    lastNum = parseInt(lastNum);
+   
+    for(let i = firstNum; i <= lastNum; i+=10) {
+        sliderRange.push(i);
+    }
+}
+
+const getRangeValue = function() {
+    const firstNumber = document.getElementById("first-number").value;
+    const lastNumber = document.getElementById("last-number").value;
+
+    generateRange(firstNumber, lastNumber);
+}
+
+const removePreviousRange = function() {
+    // // Remove all list items before gnerating new list
+    var previousLabelsArr = labelsList.querySelectorAll("li");
+
+    console.log("previousLabelsArr: ", previousLabelsArr);
+
+    for (let i = 0; i < previousLabelsArr.length; i++) {
+        let elem = previousLabelsArr[i];
+        console.log("elem: ", elem);
+        elem.parentElement.removeChild(elem);
+    }
+
+    console.log("previousLabelsArr: ", previousLabelsArr);
+
+}
+
 const applyUserConfig = function() {
     getColorValue();
     getSizeValue();
     getDefaultPositionValue();
+    removePreviousRange();
+    getRangeValue();
     
-    applySliderConfigs(knobColor, sliderSize, [], knobPosition);
+    applySliderConfigs(knobColor, sliderSize, sliderRange, knobPosition);
 }
 
 sliderKnob.addEventListener("mousedown", grabKnob);
-sliderKnob.addEventListener("mouseup", releaseKnob);
+document.addEventListener("mouseup", releaseKnob);
 document.addEventListener("mousemove", moveKnob);
 
