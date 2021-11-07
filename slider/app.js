@@ -5,6 +5,7 @@ let isDown = false;
 let containerHeight;
 let knobColor;
 let sliderSize;
+let knobPosition;
 
 function writeSliderRange(arr) {
     // Pass range array stored in a variable as an argument.
@@ -97,8 +98,6 @@ const moveKnob = function(event) {
 
 
 // CONFIG PANEL
-
-
 
 const getColorValue = function() {
     const colors = document.getElementsByName('color');
