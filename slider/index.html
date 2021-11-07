@@ -1,10 +1,11 @@
 <html>
     <head>
-        <title>Slider</title>
+        <title>Range Slider</title>
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" href="styles.css">
     </head>
     <body>
-        <h1>Slider</h1>
+        <h1>Range Slider</h1>
         <main>
 
             <!-- SLIDER UI STARTS HERE -->
@@ -23,11 +24,14 @@
 
             <!-- CONFIG PANEL STARTS HERE -->
             <div class="config-panel">
-                <h2>Configurations</h2>
+                <h2>
+                    <i class="material-icons">settings</i>
+                    Configurations
+                </h2>
                 <form>
                     <hr>
                     <section id="set-knob-color">
-                        <p>Wanna have a fun color for the Slider Knob? Pick a new color below!</p>
+                        <p>Wanna have a fun color for the Slider Knob?<br>Pick a new color!</p>
                         <input id="coral" name="color" value="coral" type="radio">
                         <label for="coral">Coral</label>
 
@@ -40,7 +44,7 @@
                     <hr>
 
                     <section id="set-slider-size">
-                        <p>Wanna see the Slider in big or small? Select your preference!</p>
+                        <p>Wanna see the Slider in big or small?<br>Select your preference!</p>
                         <input id="small" name="size" value="small" type="radio">
                         <label for="small">Small</label>
 
@@ -70,18 +74,18 @@
                     <section id="set-slider-range">
                         <p>What should be the Slider Range?</p>
 
-                        <label for="first-number">Slider should start with number:</label>
+                        <label for="first-number">Start with number:</label>
                         <input type="number" id="first-number" name="first-number" value="0" step="10">
                         <br>
 
-                        <label for="last-number">Slider should end with number:</label>
+                        <label for="last-number">End with number:</label>
                         <input type="number" id="last-number" name="last-number" value="0" step="10">
                         <br>
                     </section>
                     <hr>
 
-                    <section>
-                        <button type="button" onclick="applyUserConfig()">Submit</button>
+                    <section >
+                        <button id="submit-button" type="button" onclick="applyUserConfig()">Submit</button>
                     </section>
 
                 </form>
