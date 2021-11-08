@@ -32,11 +32,11 @@ const setDefaultPositon = function(pos) {
     // Set default position of Slider Knob (max, middle, min)
     let topPosition;
     if (pos === "max") {
-        topPosition = "-43px";
+        topPosition = "-39px";
     } else if (pos === "middle") {
-        topPosition = "calc(50% - 52px)";
+        topPosition = "calc(50% - 50px)";
     } else if (pos === "min") {
-        topPosition = "calc(100% - 60px)";
+        topPosition = "calc(100% - 61px)";
     }
 
     sliderKnob.style.top = topPosition;
