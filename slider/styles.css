@@ -7,7 +7,7 @@
   --input-pink-color: #f2328c;
 }
 
-body, main {
+body {
   height: 100%;
   font-family: 'Open Sans', sans-serif;
   color: var(--text-color);
@@ -26,6 +26,7 @@ main {
   display: flex;
   flex-direction: row;
   margin-top: 50px;
+  padding-bottom: 50px;
   width: 800px;
 }
 
@@ -98,11 +99,11 @@ main {
 /* Config Panel */
 
 .config-panel {
-  width: 450px;
+  width: 410px;
   height: 630px;
   border: 1px solid var(--text-color);
   border-radius: 10px;
-  padding: 10px 56px 50px 42px;
+  padding: 20px 60px 50px 40px;
   font-family: 'Open Sans', sans-serif;
 }
 
@@ -120,14 +121,20 @@ main {
 }
 
 .config-panel section {
-  padding: 1px 10px 10px;
+  padding: 1px 0 10px;
+}
+#submit-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
 }
 
 #submit-button {
-  margin-top: 10px;
   padding: 6px 20px;
   border: 1px solid var(--text-color);
   border-radius: 20px;
+  margin-top: 30px;
+  margin-right: 10px;
   color: var(--heading-color);
 }
 
