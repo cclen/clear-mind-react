@@ -61,15 +61,15 @@ const setSliderSize = function(size) {
     sliderConfigs.sliderSize = size;
 }
 
-const applySliderConfigs = function (color, size, range, defaultPosition) {
-    setKnobColor(color);
-    setSliderSize(size);
-    writeSliderRange(range);
-    setDefaultPositon(defaultPosition);
+const applySliderConfigs = function (obj) {
+    setKnobColor(obj.knobColor);
+    setSliderSize(obj.sliderSize);
+    writeSliderRange(obj.sliderRange);
+    setDefaultPositon(obj.knobPosition);
 }
 
 // Default UI settings
-applySliderConfigs(sliderConfigs.knobColor, sliderConfigs.sliderSize, sliderConfigs.sliderRange, sliderConfigs.knobPosition);
+applySliderConfigs(sliderConfigs);
 
 
 // Knob Movements
@@ -170,7 +170,7 @@ const applyUserConfig = function() {
     removePreviousRange();
     getRangeValue();
     
-    applySliderConfigs(sliderConfigs.knobColor, sliderConfigs.sliderSize, sliderConfigs.sliderRange, sliderConfigs.knobPosition);
+    applySliderConfigs(sliderConfigs);
 }
 
 sliderKnob.addEventListener("mousedown", grabKnob);
