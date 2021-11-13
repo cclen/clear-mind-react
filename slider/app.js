@@ -12,9 +12,6 @@ const sliderConfigs = {
     knobPosition: "middle"
 }
 
-const rangeArray1 = [0, 20, 40, 60, 80, 100];
-const rangeArray2 = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
-
 function writeSliderRange(arr) {
     // Pass range array stored in a variable as an argument.
     // Loop through range array - create a div for each value of the array - append those divs to the DOM inside the parent element of labels (labelsList).
@@ -68,11 +65,11 @@ const applySliderConfigs = function (obj) {
     setDefaultPositon(obj.knobPosition);
 }
 
-// Default UI settings
+// DEFAULT UI SETTINGS
 applySliderConfigs(sliderConfigs);
 
 
-// Knob Movements
+// KNOB MOVEMENTS
 
 const grabKnob = function(event) {
     isDown = true;
@@ -107,7 +104,7 @@ const moveKnob = function(event) {
 
 // CONFIG PANEL
 
-const getColorValue = function() {
+const updateColorValue = function() {
     const colors = document.getElementsByName('color');
       
     for(i = 0; i < colors.length; i++) {
@@ -116,7 +113,7 @@ const getColorValue = function() {
     }
 }
 
-const getSizeValue = function() {
+const updateSizeValue = function() {
     const sizes = document.getElementsByName('size');
       
     for(i = 0; i < sizes.length; i++) {
@@ -125,7 +122,7 @@ const getSizeValue = function() {
     }
 }
 
-const getDefaultPositionValue = function() {
+const updateDefaultPositionValue = function() {
     const positions = document.getElementsByName('position');
       
     for(i = 0; i < positions.length; i++) {
@@ -146,7 +143,7 @@ const generateRange = function (firstNum, lastNum) {
     sliderConfigs.sliderRange = range;
 }
 
-const getRangeValue = function() {
+const updateRangeValue = function() {
     const firstNumber = document.getElementById("first-number").value;
     const lastNumber = document.getElementById("last-number").value;
 
@@ -154,7 +151,7 @@ const getRangeValue = function() {
 }
 
 const removePreviousRange = function() {
-    // // Remove all list items before gnerating new list
+    // Remove all list items before generating new list
     var previousLabelsArr = labelsList.querySelectorAll("li");
 
     for (let i = 0; i < previousLabelsArr.length; i++) {
@@ -164,11 +161,11 @@ const removePreviousRange = function() {
 }
 
 const applyUserConfig = function() {
-    getColorValue();
-    getSizeValue();
-    getDefaultPositionValue();
+    updateColorValue();
+    updateSizeValue();
+    updateDefaultPositionValue();
     removePreviousRange();
-    getRangeValue();
+    updateRangeValue();
     
     applySliderConfigs(sliderConfigs);
 }
