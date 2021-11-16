@@ -4,10 +4,19 @@ const labelsList = document.getElementById("labels-list");
 let isDown = false;
 let containerHeight;
 
+
+const sliderConfigs = {
+    knobColor: "#d5d5d5",
+    sliderSize: "medium",
+    sliderRange: [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
+    knobPosition: "middle"
+}
+
 function writeSliderRange(arr) {
-    //pass range array stored in a variable as an argument
-    //loop through range array - create a div for each value of the array - append those divs to the DOM inside the parent element of labels (labelsList)
-    // since the will receive an array in increasing order, we need to loop throught he array backwards to append the numbers in decreasing order to the track (highest number on top)
+    // Pass range array stored in a variable as an argument.
+    // Loop through range array - create a div for each value of the array - append those divs to the DOM inside the parent element of labels (labelsList).
+    // Since the will receive an array in increasing order, we need to loop throught he array backwards to append the numbers in decreasing order to the track (highest number on top).
+
     let newLabel;
     for(let i = arr.length-1; i >= 0; i--) {
         newLabel = document.createElement("li");
@@ -17,24 +26,27 @@ function writeSliderRange(arr) {
 }
 
 const setDefaultPositon = function(pos) {
+    // Set default position of Slider Knob (max, middle, min)
     let topPosition;
     if (pos === "max") {
-        topPosition = "-43px";
+        topPosition = "-39px";
     } else if (pos === "middle") {
-        topPosition = "calc(50% - 52px)";
+        topPosition = "calc(50% - 50px)";
     } else if (pos === "min") {
-        topPosition = "calc(100% - 60px)";
+        topPosition = "calc(100% - 61px)";
     }
 
     sliderKnob.style.top = topPosition;
-
 }
 
-const applySliderConfigs = function (color, size, range, defaultPosition) {
-    // set Slider Knob background color
+const setKnobColor = function(color) {
+    // Set Slider Knob background color
     sliderKnob.style.backgroundColor = color;
-    
-    // set the Slider size by updating container height
+    sliderConfigs.knobColor = color;
+}
+
+const setSliderSize = function(size) {
+    // Set the Slider size by updating container height
     if (size === "medium") {
         containerHeight = "400px";
     } else if (size === "small") {
@@ -43,18 +55,21 @@ const applySliderConfigs = function (color, size, range, defaultPosition) {
         containerHeight = "500px";
     }
     sliderContainer.style.height = containerHeight;
-
-    // Set the Range of the Slider
-    writeSliderRange(range);
-
-    //set default position of Slider Knob (max, middle, min)
-    setDefaultPositon(defaultPosition);
+    sliderConfigs.sliderSize = size;
 }
 
-const rangeArray1 = [0, 20, 40, 60, 80, 100];
-const rangeArray2 = [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100];
+const applySliderConfigs = function (obj) {
+    setKnobColor(obj.knobColor);
+    setSliderSize(obj.sliderSize);
+    writeSliderRange(obj.sliderRange);
+    setDefaultPositon(obj.knobPosition);
+}
 
-applySliderConfigs("aqua", "medium", rangeArray2, "middle");
+// DEFAULT UI SETTINGS
+applySliderConfigs(sliderConfigs);
+
+
+// KNOB MOVEMENTS
 
 const grabKnob = function(event) {
     isDown = true;
@@ -86,7 +101,75 @@ const moveKnob = function(event) {
     }
 }
 
-sliderKnob.addEventListener("mousedown", grabKnob);
-sliderKnob.addEventListener("mouseup", releaseKnob);
-document.addEventListener("mousemove", moveKnob);
 
+// CONFIG PANEL
+
+const updateColorValue = function() {
+    const colors = document.getElementsByName('color');
+      
+    for(i = 0; i < colors.length; i++) {
+        if(colors[i].checked)
+        sliderConfigs.knobColor = colors[i].value;
+    }
+}
+
+const updateSizeValue = function() {
+    const sizes = document.getElementsByName('size');
+      
+    for(i = 0; i < sizes.length; i++) {
+        if(sizes[i].checked)
+        sliderConfigs.sliderSize = sizes[i].value;
+    }
+}
+
+const updateDefaultPositionValue = function() {
+    const positions = document.getElementsByName('position');
+      
+    for(i = 0; i < positions.length; i++) {
+        if(positions[i].checked)
+        sliderConfigs.knobPosition = positions[i].value;
+    }
+}
+
+const generateRange = function (firstNum, lastNum) {
+    firstNum = parseInt(firstNum);
+    lastNum = parseInt(lastNum);
+    let range = [];
+    
+    for(let i = firstNum; i <= lastNum; i+=10) {
+       range.push(i);
+    }
+
+    sliderConfigs.sliderRange = range;
+}
+
+const updateRangeValue = function() {
+    const firstNumber = document.getElementById("first-number").value;
+    const lastNumber = document.getElementById("last-number").value;
+
+    generateRange(firstNumber, lastNumber);
+}
+
+const removePreviousRange = function() {
+    // Remove all list items before generating new list
+    var previousLabelsArr = labelsList.querySelectorAll("li");
+
+    for (let i = 0; i < previousLabelsArr.length; i++) {
+        let elem = previousLabelsArr[i];
+        elem.parentElement.removeChild(elem);
+    }
+}
+
+const applyUserConfig = function() {
+    updateColorValue();
+    updateSizeValue();
+    updateDefaultPositionValue();
+    removePreviousRange();
+    updateRangeValue();
+    
+    applySliderConfigs(sliderConfigs);
+}
+
+sliderKnob.addEventListener("mousedown", grabKnob);
+document.addEventListener("mouseup", releaseKnob);
+document.addEventListener("mousemove", moveKnob);
