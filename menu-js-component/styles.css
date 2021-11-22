@@ -1,29 +1,14 @@
-@import url('https://fonts.googleapis.com/css2?family=Mrs+Sheppards&family=Open+Sans:wght@800&family=Roboto:wght@300;400;700&display=swap');
-
-
-/****** Color variables ******/
-
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
 
 :root {
+    /* Color variables */
     --brand-orange-color: #F96302;
     --text-grey-color: #36454f;
     --hover-mask-color: rgba(100, 100, 100, 0.2);
 
     /* Font Related Variables */
-    /* Use font shorthand.
-       
-    refrence:
-    https://www.w3schools.com/css/css_font_shorthand.asp
-    e.g.
-    font:  style  weight  size/line-height  family1,  family2;
-    font: italic small-caps bold 12px/30px Georgia, serif;
-     */
     --roboto-fonts: 'Roboto', sans-serif;
-    --open-sans-fonts: 'Open Sans', sans-serif;
-    /* the next line is used only for testing */
-    /* --cursive-fonts: 'Mrs Sheppards', cursive; */
 }
-
 
 body {
     font-family: var(--roboto-fonts);
@@ -36,15 +21,14 @@ header {
     font-size: 16px;
     font-weight: lighter;
     position: relative;
+    z-index: 1;
 }
 
 
 /****** Style Resets (Header) ******/
 
-
 header ul {
     list-style: none;
-    padding-left: 26px;
 }
 
 header a {
@@ -58,7 +42,6 @@ header a:hover {
 
 
 /****** BANNER ******/
-
 
 header banner {
     width: 100%;
@@ -77,9 +60,9 @@ header banner p {
 
 /****** MAIN MENU  ******/
 
-
 .main-menu-container {
     padding: 0 20px;
+    box-shadow: 0 2px 9px 0 #cccccc;
 }
 
 .main-menu {
@@ -94,51 +77,60 @@ header banner p {
 }
 
 
-/****** SUBMENU LEVEL 1 - DROPDOWN ******/
+/****** SUBMENU GENERIC STYLE ******/
 
-
-.submenu-level-1 {
+.submenu {
     display: none;
     position: absolute;
+    padding-top: 10px;
+    background-color: white;
+    z-index: 1;
+}
+
+.submenu ul {
+    padding-left: 0;
+    height: 100vh;
+}
+
+.submenu li a {
+    display: block;
+    width: 100%;
+    padding: 3px 0 3px 26px;
+}
+
+
+/****** SUBMENU LEVEL 1 - DROPDOWN ******/
+
+.submenu-level-1 {
     top: 66px;
     left: 0;
-    z-index: 1;
-    background-color: white;
     width: 260px;
-    padding-top: 10px;
-}
-
-/* .submenu-level-1.active {
-    display: block;
-} */
-
-.submenu-level-1 li {
-    padding: 3px 0;
 }
 
 
-
-
-/* .submenu-home-decor-furniture {
-    display: none;
-} */
-
-
-/****** SUBMENU LEVEL s - SLIDEOUT ******/
-
+/****** SUBMENU LEVEL 2 - SLIDEOUT ******/
 
 .submenu-level-2 {
-    display: none;
+    top: -17px;
+    left: 260px;
+    width: 300px; 
+    padding-bottom: 5px;
+}
+
+.submenu-level-2-heading {
+   font-size: 20px;
+}
+
+.submenu-level-2 li a {
+    border-left: 2px solid var(--hover-mask-color);
 }
 
 
 /****** MAIN ******/
 
-
 main {
     min-height: 100vh;
     background-color: white;
-    z-index: 0;;
     font-family: var(--roboto-fonts);
     font-weight: 800;
     font-size: 80px;
@@ -146,10 +138,6 @@ main {
     padding: 80px;
     position: relative;
 }
-
-/* main a {
-    text-decoration: none;
-} */
 
 #hover-mask {
     display: none;
@@ -159,4 +147,5 @@ main {
     position: absolute;
     top: 0;
     left: 0;
+    z-index: 0;
 }
