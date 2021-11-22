@@ -18,4 +18,4 @@ Identify submenus for just 2-3 of the main menu items. Submenus are items that o
 
 
 Additional Requirement:
-- the dropdown should open below the Main Menubar
+- the dropdown should open below the Main Menubar list item
