@@ -1,0 +1,201 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap');
+
+:root {
+    /* Color variables */
+    --brand-orange-color: #F96302;
+    --text-grey-color: #36454f;
+    --hover-mask-color: rgba(100, 100, 100, 0.2);
+    --menu-background-color: #fff;
+
+    /* Font Related Variables */
+    --roboto-fonts: 'Roboto', sans-serif;
+}
+
+body {
+    font-family: var(--roboto-fonts);
+    margin: 0;
+    color: var(--text-grey-color);
+}
+
+header {
+    width: 100%;
+    font-size: 16px;
+    font-weight: lighter;
+    position: relative;
+    z-index: 1;
+}
+
+
+/****** Style Resets (Header) ******/
+
+header ul {
+    list-style: none;
+}
+
+header a {
+    text-decoration: none;
+    color: var(--text-grey-color);
+}
+
+header a:hover {
+    font-weight: bold;
+}
+
+
+/****** BANNER ******/
+
+header banner {
+    width: 100%;
+    justify-content: center;
+    background-color: var(--brand-orange-color);
+    height: 32px;
+    display: flex;
+    align-items: center;
+}
+
+header banner p {
+    margin: 0;
+    color: white;
+}
+
+
+/****** MAIN MENU  ******/
+
+.main-menu-container {
+    padding: 0 20px;
+    box-shadow: 0 2px 9px 0 #cccccc;
+}
+
+#main-menu {
+    display: inline-flex;
+    flex-wrap: wrap;
+    padding-left: 0;
+    margin: 0;
+}
+
+#main-menu li {
+    padding: 16px 16px 16px 0;
+}
+
+
+
+
+/* dropdown */
+  
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-content {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 46px;
+    background-color: var(--menu-background-color);
+    /* background-color: grey; */
+    /* min-width: 160px; */
+    /* box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2); */
+    z-index: 1;
+    padding-left: 16px;
+    height: 100vh;
+    width: 240px;
+    margin-left: -16px;
+    padding-top: 10px;
+
+ 
+    /* padding-top: 10px; */
+  
+
+}
+
+.dropdown-content a {
+    display: block;
+    width: 100%;
+    padding: 5px 0;
+    
+}
+
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+
+
+
+
+
+
+
+/****** SUBMENU GENERIC STYLE ******/
+
+.submenu {
+    display: none;
+    position: absolute;
+    padding-top: 10px;
+    background-color: var(--menu-background-color);
+    z-index: 1;
+}
+
+.submenu ul {
+    padding-left: 0;
+    height: 100vh;
+}
+
+.submenu li a {
+    display: block;
+    width: 100%;
+    padding: 3px 0 3px 26px;
+}
+
+
+/****** SUBMENU LEVEL 1 - DROPDOWN ******/
+
+.submenu-level-1 {
+    top: 66px;
+    left: 0;
+    width: 260px;
+}
+
+
+/****** SUBMENU LEVEL 2 - SLIDEOUT ******/
+
+.submenu-level-2 {
+    top: -17px;
+    left: 260px;
+    width: 300px; 
+    padding-bottom: 5px;
+}
+
+.submenu-level-2-heading {
+   font-size: 20px;
+}
+
+.submenu-level-2 li a {
+    border-left: 2px solid var(--hover-mask-color);
+}
+
+
+/****** MAIN ******/
+
+main {
+    min-height: 100vh;
+    background-color: white;
+    font-family: var(--roboto-fonts);
+    font-weight: 800;
+    font-size: 80px;
+    text-transform: uppercase;
+    padding: 80px;
+    position: relative;
+}
+
+#hover-mask {
+    display: none;
+    background-color: var(--hover-mask-color);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+}
