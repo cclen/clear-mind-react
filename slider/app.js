@@ -107,7 +107,7 @@ const moveKnob = event => {
 const updateColorValue = () => {
     const colors = document.getElementsByName('color');
       
-    for(i = 0; i < colors.length; i++) {
+    for(let i = 0; i < colors.length; i++) {
         if(colors[i].checked)
         sliderConfigs.knobColor = colors[i].value;
     }
@@ -116,7 +116,7 @@ const updateColorValue = () => {
 const updateSizeValue = () => {
     const sizes = document.getElementsByName('size');
       
-    for(i = 0; i < sizes.length; i++) {
+    for(let i = 0; i < sizes.length; i++) {
         if(sizes[i].checked)
         sliderConfigs.sliderSize = sizes[i].value;
     }
@@ -125,7 +125,7 @@ const updateSizeValue = () => {
 const updateDefaultPositionValue = () => {
     const positions = document.getElementsByName('position');
       
-    for(i = 0; i < positions.length; i++) {
+    for(let i = 0; i < positions.length; i++) {
         if(positions[i].checked)
         sliderConfigs.knobPosition = positions[i].value;
     }
