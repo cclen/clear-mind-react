@@ -12,7 +12,7 @@ const sliderConfigs = {
     knobPosition: "middle"
 }
 
-function writeSliderRange(arr) {
+const writeSliderRange = arr => {
     // Pass range array stored in a variable as an argument.
     // Loop through range array - create a div for each value of the array - append those divs to the DOM inside the parent element of labels (labelsList).
     // Since the will receive an array in increasing order, we need to loop throught he array backwards to append the numbers in decreasing order to the track (highest number on top).
@@ -25,7 +25,7 @@ function writeSliderRange(arr) {
     }
 }
 
-const setDefaultPositon = function(pos) {
+const setDefaultPositon = pos => {
     // Set default position of Slider Knob (max, middle, min)
     let topPosition;
     if (pos === "max") {
@@ -39,13 +39,13 @@ const setDefaultPositon = function(pos) {
     sliderKnob.style.top = topPosition;
 }
 
-const setKnobColor = function(color) {
+const setKnobColor = color => {
     // Set Slider Knob background color
     sliderKnob.style.backgroundColor = color;
     sliderConfigs.knobColor = color;
 }
 
-const setSliderSize = function(size) {
+const setSliderSize = size => {
     // Set the Slider size by updating container height
     if (size === "medium") {
         containerHeight = "400px";
@@ -58,7 +58,7 @@ const setSliderSize = function(size) {
     sliderConfigs.sliderSize = size;
 }
 
-const applySliderConfigs = function (obj) {
+const applySliderConfigs = obj => {
     setKnobColor(obj.knobColor);
     setSliderSize(obj.sliderSize);
     writeSliderRange(obj.sliderRange);
@@ -71,16 +71,16 @@ applySliderConfigs(sliderConfigs);
 
 // KNOB MOVEMENTS
 
-const grabKnob = function(event) {
+const grabKnob = event => {
     isDown = true;
     offset = sliderKnob.offsetTop - event.clientY;
 }
 
-const releaseKnob = function() {
+const releaseKnob = () => {
     isDown = false;
 }
 
-const moveKnob = function(event) {
+const moveKnob = event => {
     event.preventDefault();
     let knobOffset;
     
@@ -104,34 +104,34 @@ const moveKnob = function(event) {
 
 // CONFIG PANEL
 
-const updateColorValue = function() {
+const updateColorValue = () => {
     const colors = document.getElementsByName('color');
       
-    for(i = 0; i < colors.length; i++) {
+    for(let i = 0; i < colors.length; i++) {
         if(colors[i].checked)
         sliderConfigs.knobColor = colors[i].value;
     }
 }
 
-const updateSizeValue = function() {
+const updateSizeValue = () => {
     const sizes = document.getElementsByName('size');
       
-    for(i = 0; i < sizes.length; i++) {
+    for(let i = 0; i < sizes.length; i++) {
         if(sizes[i].checked)
         sliderConfigs.sliderSize = sizes[i].value;
     }
 }
 
-const updateDefaultPositionValue = function() {
+const updateDefaultPositionValue = () => {
     const positions = document.getElementsByName('position');
       
-    for(i = 0; i < positions.length; i++) {
+    for(let i = 0; i < positions.length; i++) {
         if(positions[i].checked)
         sliderConfigs.knobPosition = positions[i].value;
     }
 }
 
-const generateRange = function (firstNum, lastNum) {
+const generateRange = (firstNum, lastNum) => {
     firstNum = parseInt(firstNum);
     lastNum = parseInt(lastNum);
     let range = [];
@@ -143,14 +143,14 @@ const generateRange = function (firstNum, lastNum) {
     sliderConfigs.sliderRange = range;
 }
 
-const updateRangeValue = function() {
+const updateRangeValue = () => {
     const firstNumber = document.getElementById("first-number").value;
     const lastNumber = document.getElementById("last-number").value;
 
     generateRange(firstNumber, lastNumber);
 }
 
-const removePreviousRange = function() {
+const removePreviousRange = () => {
     // Remove all list items before generating new list
     var previousLabelsArr = labelsList.querySelectorAll("li");
 
@@ -160,7 +160,7 @@ const removePreviousRange = function() {
     }
 }
 
-const applyUserConfig = function() {
+const applyUserConfig = () => {
     updateColorValue();
     updateSizeValue();
     updateDefaultPositionValue();

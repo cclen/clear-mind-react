@@ -5,7 +5,7 @@ let dropdownLink;
 let slideout;
 let hoverMask = document.getElementById("hover-mask");
 
-const displaySubmenus = function(e) {
+const displaySubmenus = e => {
     let mainLinkPosition = {};
 
     // get position of main menu item
@@ -28,7 +28,7 @@ const displaySubmenus = function(e) {
 
     // call event on dropdown links if dropdown exists
     if(dropdown) {
-        dropdown.addEventListener("mouseover", function(event) {
+        dropdown.addEventListener("mouseover", event => {
             let dropdownPosition = {};
             dropdownLink = event.target;
             // if a slideout has been opened previously, close it when a new dropdownLink is hovered
@@ -53,12 +53,12 @@ const displaySubmenus = function(e) {
     }
 }
 
-const keepDropdownDisplayed = function () {
+const keepDropdownDisplayed = () => {
     dropdown.style.display = "block";
     hoverMask.style.display = "block";
 }
 
-const closeAllSubmenus = function() {
+const closeAllSubmenus = () => {
     if (dropdown) {
         dropdown.style.display = "none";
         if (slideout) {
