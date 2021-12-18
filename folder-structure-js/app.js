@@ -1,13 +1,3 @@
-// const testPageLoad = () => console.log("Page load is successful.");
-
-// const folder = {
-//     name,
-//     contents, //will be an array. empty array if empty
-//     dateCreated,
-//     id,
-//     level
-// };
-  
 const folders = [
     {
         name: 'Work',
@@ -130,7 +120,6 @@ const folders = [
 // VERSION 2
 // source code: https://codereview.stackexchange.com/questions/252922/pretty-print-directory-structure-in-a-json-recursively
 
-// const indentation = 2;
 
 const logFolders = (contents, indentation, prefix = '') => contents
         .map( ({ name, contents }) => Array.isArray(contents) 
