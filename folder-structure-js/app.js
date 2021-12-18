@@ -104,17 +104,17 @@ const folders = [
 ];
 
 // WORKING VERSION 1 - up to 2 levels, call inline from body
-// const createFolderStructure = arr => {
-//     for(let i = 0; i < arr.length; i++) {
-//         console.log("- " + folders[i].name);
-//         if (folders[i].contents) {
-//             for(let j = 0; j < folders[i].contents.length; j++) {
-//                 console.log("  + " + folders[i].contents[j].name); 
-//             }
-//         }
+const createFolderStructure = arr => {
+    for(let i = 0; i < arr.length; i++) {
+        console.log("- " + folders[i].name);
+        if (folders[i].contents) {
+            for(let j = 0; j < folders[i].contents.length; j++) {
+                console.log("  + " + folders[i].contents[j].name); 
+            }
+        }
         
-//     }
-// };
+    }
+};
 
 
 // VERSION 2
