@@ -9,23 +9,6 @@ const sliderConfigs = {
     knobPosition: "middle"
 }
 
-
-
-// const applySliderConfigs = obj => {
-//     // setKnobColor(obj.knobColor);
-//     // setSliderSize(obj.sliderSize);
-//     writeSliderRange(obj.sliderRange);
-//     // setDefaultPositon(obj.knobPosition);
-// }
-
-function RangeLabel(props) {
-    return (
-        <li>
-            {props.value} hello
-        </li>
-    );
-  }
-
 class Slider extends React.Component {
     render() {
         const range = sliderConfigs.sliderRange;
