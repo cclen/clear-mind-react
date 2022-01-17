@@ -1,0 +1,14 @@
+.app {
+  text-align: center;
+}
+
+.mainNav {
+  display: flex;
+  justify-content: space-around;
+  max-width: 500px;
+  margin: auto;
+  font-weight: 900;
+  text-transform: uppercase;
+  padding: 40px 0;
+}
+
